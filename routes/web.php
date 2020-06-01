@@ -39,6 +39,13 @@ Route::post('/master/customer/store', 'CustomerController@store')->name('custome
 Route::get('/customer/{customer}/edit', 'CustomerController@edit')->name('customer.edit');
 Route::patch('/customer/{customer}/edit', 'CustomerController@update')->name('customer.update');
 Route::delete('/customer/{customer}/delete', 'CustomerController@destroy')->name('customer.destroy');
+// todo Master Product
+Route::get('/master/product', 'ProductController@index')->name('master.product');
+Route::get('/master/product/create', 'ProductController@create')->name('product.create');
+Route::post('/master/product/store', 'ProductController@store')->name('product.store');
+Route::get('/product/{product}/edit', 'ProductController@edit')->name('product.edit');
+Route::patch('/product/{product}/edit', 'ProductController@update')->name('product.update');
+Route::delete('/product/{product}/delete', 'ProductController@destroy')->name('product.destroy');
 
 
 // Route::patch('/post/{post}/edit', 'PostController@update')->name('post.update');

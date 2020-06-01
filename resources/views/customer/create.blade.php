@@ -20,6 +20,7 @@
             <input name="nama_customer" type="text" class="form-control" id="nama" placeholder="Masukkan nama customer">
           </div>
           <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Submit</button>
+          <a href="{{route('master.customer')}}" class="btn btn-warning mt-4 pr-4 pl-4">Batal</a>
         </form>
       </div>
     </div>

@@ -57,7 +57,7 @@
                   <li class="{{(Request::is('/', 'master/user-management')) ? 'active' : ''}}"><a href="">User Managemenet</a></li>
                   <li class="{{(Request::is('/', 'master/supplier')) ? 'active' : ''}}"><a href="{{route('master.supplier')}}">Supplier</a></li>
                   <li class="{{(Request::is('/', 'master/customer')) ? 'active' : ''}}"><a href="{{route('master.customer')}}">Customer</a></li>
-                  <li><a href="#">Barang</a></li>
+                  <li class="{{(Request::is('/', 'master/product')) ? 'active' : ''}}"><a href="{{route('master.product')}}">Barang</a></li>
                 </ul>
               </li>
               <li>

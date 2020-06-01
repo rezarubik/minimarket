@@ -28,6 +28,7 @@
             <input name="nomor_telepon_supplier" type="number" min="0" class="form-control" id="nomor_telepon" placeholder="Masukkan nomor telepon supplier">
           </div>
           <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Submit</button>
+          <a href="{{route('master.supplier')}}" class="btn btn-warning mt-4 pr-4 pl-4">Batal</a>
         </form>
       </div>
     </div>
