@@ -49,6 +49,7 @@
             <thead class="text-capitalize">
               <tr>
                 <th>ID</th>
+                <th>Nama Supplier</th>
                 <th>Nama Produk</th>
                 <th>Satuan</th>
                 <th>Harga Beli</th>
@@ -62,6 +63,11 @@
               @foreach($products as $product)
               <tr>
                 <td> {{$product->id_product}} </td>
+                <?php
+                // var_dump($product->supplier());
+                // die();
+                ?>
+                <td> {{$product->supplier->nama}} </td>
                 <td> {{$product->nama_barang}} </td>
                 <td> {{$product->satuan}} </td>
                 <td> {{$product->harga_beli}} </td>
