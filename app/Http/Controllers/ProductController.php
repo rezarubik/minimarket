@@ -28,7 +28,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('product.create');
+        $suppliers = Supplier::all();
+        return view('product.create', compact('suppliers'));
     }
 
     /**
@@ -40,6 +41,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $data = [
+            'id_supplier' => $request->id_supplier,
             'nama_barang' => $request->nama_product,
             'satuan' => $request->satuan,
             'harga_beli' => $request->harga_beli,
@@ -71,7 +73,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('product.edit', compact('product'));
+        $suppliers = Supplier::all();
+        return view('product.edit', compact('product', 'suppliers'));
     }
 
     /**
@@ -84,6 +87,7 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $data = [
+            'id_supplier' => $request->id_supplier,
             'nama_barang' => $request->nama_product,
             'satuan' => $request->satuan,
             'harga_beli' => $request->harga_beli,

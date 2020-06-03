@@ -17,6 +17,17 @@
           @csrf
           @method('patch')
           <div class="form-group">
+            <label for="suppliers" class="col-form-label">Supplier</label>
+            <select name="id_supplier" class="custom-select">
+              @foreach($suppliers as $supplier)
+              <option value="{{$supplier->id_supplier}}" @if($supplier->id_supplier === $product->id_supplier)
+                selected
+                @endif
+                > {{$supplier->nama}} </option>
+              @endforeach
+            </select>
+          </div>
+          <div class="form-group">
             <label for="nama_product">Nama Produk</label>
             <input name="nama_product" type="text" class="form-control" id="nama_product" value="{{$product->nama_barang}}">
           </div>

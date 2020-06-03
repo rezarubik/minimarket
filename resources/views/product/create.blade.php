@@ -16,6 +16,15 @@
         <form action="{{route('product.store')}}" method="POST">
           @csrf
           <div class="form-group">
+            <label for="suppliers" class="col-form-label">Supplier</label>
+            <select name="id_supplier" class="custom-select">
+              <option selected>Pilih Supplier</option>
+              @foreach($suppliers as $supplier)
+              <option value="{{$supplier->id_supplier}}"> {{$supplier->nama}} </option>
+              @endforeach
+            </select>
+          </div>
+          <div class="form-group">
             <label for="nama_product">Nama Produk</label>
             <input name="nama_product" type="text" class="form-control" id="nama_product" placeholder="Masukkan nama produk">
           </div>
