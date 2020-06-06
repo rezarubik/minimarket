@@ -54,7 +54,7 @@
                 <a href="javascript:void(0)" aria-expanded="true"><i class="ti-layout-sidebar-left"></i><span>Master
                   </span></a>
                 <ul class="collapse">
-                  <li class="{{(Request::is('/', 'master/user-management')) ? 'active' : ''}}"><a href="">User Managemenet</a></li>
+                  <li class="{{(Request::is('/', 'master/user-management')) ? 'active' : ''}}"><a href="{{route('master.user.management')}}">User Managemenet</a></li>
                   <li class="{{(Request::is('/', 'master/supplier')) ? 'active' : ''}}"><a href="{{route('master.supplier')}}">Supplier</a></li>
                   <li class="{{(Request::is('/', 'master/customer')) ? 'active' : ''}}"><a href="{{route('master.customer')}}">Customer</a></li>
                   <li class="{{(Request::is('/', 'master/product')) ? 'active' : ''}}"><a href="{{route('master.product')}}">Barang</a></li>
@@ -261,11 +261,20 @@
           <div class="col-sm-6 clearfix">
             <div class="user-profile pull-right">
               <img class="avatar user-thumb" src="{{asset('assets/images/author/avatar.png')}}" alt="avatar">
-              <h4 class="user-name dropdown-toggle" data-toggle="dropdown">Admin <i class="fa fa-angle-down"></i></h4>
+              <h4 class="user-name dropdown-toggle" data-toggle="dropdown">{{ auth()->user()->name }} <i class="fa fa-angle-down"></i></h4>
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="#">Message</a>
                 <a class="dropdown-item" href="#">Settings</a>
-                <a class="dropdown-item" href="#">Log Out</a>
+                <!-- <a class="dropdown-item" href="#">Log Out</a> -->
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
               </div>
             </div>
           </div>

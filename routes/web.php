@@ -19,12 +19,18 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'AdminController@index')->name('home');
 
 // todo Admin
 Route::get('/admin/dashboard', 'AdminController@index')->name('admin.dashboard');
-// todo
-Route::get('/master/user-management', 'AdminController@UserManagement')->name('master.user.management');
+// todo Master User Management
+Route::get('/master/user-management', 'UserManagementController@index')->name('master.user.management');
+Route::get('/master/user-management/create', 'UserManagementController@create')->name('user.management.create');
+Route::post('/master/user-management/store', 'UserManagementController@store')->name('user.management.store');
+Route::get('/master/{user}/edit', 'UserManagementController@edit')->name('user.management.edit');
+Route::patch('/master/{user}/edit', 'UserManagementController@update')->name('user.management.update');
+Route::delete('/master/{user}/delete', 'UserManagementController@destroy')->name('user.management.destroy');
 // todo Master Supplier
 Route::get('/master/supplier', 'SupplierController@index')->name('master.supplier');
 Route::get('/master/supplier/create', 'SupplierController@create')->name('supplier.create');

@@ -3,9 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use Illuminate\Support\Facades\Hash;
 
-class AdminController extends Controller
+class UserManagementController extends Controller
 {
+    // public function __construct(){
+    //     $this->middleware('auth');
+    // }
     /**
      * Display a listing of the resource.
      *
@@ -13,15 +18,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard');
-    }
-
-    /**
-     * todo User Management
-     */
-    public function UserManagement()
-    {
-        return view('admin.user_management');
+        $users = User::all();
+        return view('user_management.index', compact('users'));
     }
 
     /**
@@ -31,7 +29,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('user_management.create');
     }
 
     /**
@@ -42,7 +40,14 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = [
+            'name' => $request->nama_user,
+            'email' => $request->email_user,
+            'password' => Hash::make($request->password),
+            'role' => $request->role
+        ];
+        User::create($data);
+        return redirect()->route('master.user.management')->with('status', 'Data user berhasil ditambahkan');
     }
 
     /**
@@ -62,9 +67,9 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        return view('user_management.edit', compact('user'));
     }
 
     /**
@@ -74,9 +79,16 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $data = [
+            'name' => $request->nama_user,
+            'email' => $request->email_user,
+            'password' => Hash::make($request->password),
+            'role' => $request->role
+        ];
+        $user->update($data);
+        return redirect()->route('master.user.management')->with('status', 'Data user berhasil diupdate');
     }
 
     /**
