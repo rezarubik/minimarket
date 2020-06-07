@@ -17,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('/master/user-management', 'UserManagementController@index')->name('master.user.management');
+Route::get('/master/supplier', 'SupplierController@index')->name('master.supplier');
+Route::get('/master/customer', 'CustomerController@index')->name('master.customer');
+Route::get('/master/product', 'ProductController@index')->name('master.product');

@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ProductExport;
 use App\Product;
 use App\Supplier;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
     /**
      * Display a listing of the resource.
      *
@@ -109,5 +115,13 @@ class ProductController extends Controller
     {
         $product->delete();
         return redirect()->route('master.product')->with('status', 'Data barang berhasil dihapus');
+    }
+
+    /**
+     * todo Export to Excel
+     */
+    public function exportToExcel()
+    {
+        return Excel::download(new ProductExport, 'Product.xlsx');
     }
 }

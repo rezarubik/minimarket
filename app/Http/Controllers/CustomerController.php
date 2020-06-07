@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
+use App\Exports\CustomerExport;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CustomerController extends Controller
 {
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
     /**
      * Display a listing of the resource.
      *
@@ -15,6 +21,7 @@ class CustomerController extends Controller
     public function index()
     {
         $customers = Customer::all();
+        // dd($customers);
         return view('customer.index', compact('customers'));
     }
 
@@ -91,5 +98,13 @@ class CustomerController extends Controller
     {
         $customer->delete();
         return redirect()->route('master.customer')->with('status', 'Data customer berhasil dihapus');
+    }
+
+    /**
+     * todo Export to Excel
+     */
+    public function exportToExcel()
+    {
+        return Excel::download(new CustomerExport, 'Customer.xlsx');
     }
 }

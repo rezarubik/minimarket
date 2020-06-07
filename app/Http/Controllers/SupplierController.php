@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class SupplierController extends Controller
 {
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
     /**
      * Display a listing of the resource.
      *
@@ -15,6 +19,7 @@ class SupplierController extends Controller
     public function index()
     {
         $supplier = Supplier::all();
+        // dd($supplier);
         return view('supplier.index', compact('supplier'));
     }
 

@@ -13,8 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
@@ -45,6 +48,8 @@ Route::post('/master/customer/store', 'CustomerController@store')->name('custome
 Route::get('/customer/{customer}/edit', 'CustomerController@edit')->name('customer.edit');
 Route::patch('/customer/{customer}/edit', 'CustomerController@update')->name('customer.update');
 Route::delete('/customer/{customer}/delete', 'CustomerController@destroy')->name('customer.destroy');
+// ? Export Customer
+Route::get('/master/customer/export', 'CustomerController@exportToExcel')->name('customer.export');
 // todo Master Product
 Route::get('/master/product', 'ProductController@index')->name('master.product');
 Route::get('/master/product/create', 'ProductController@create')->name('product.create');
@@ -52,6 +57,7 @@ Route::post('/master/product/store', 'ProductController@store')->name('product.s
 Route::get('/product/{product}/edit', 'ProductController@edit')->name('product.edit');
 Route::patch('/product/{product}/edit', 'ProductController@update')->name('product.update');
 Route::delete('/product/{product}/delete', 'ProductController@destroy')->name('product.destroy');
-
+// ? Export Product
+Route::get('/product/export', 'ProductController@exportToExcel')->name('product.export');
 
 // Route::patch('/post/{post}/edit', 'PostController@update')->name('post.update');

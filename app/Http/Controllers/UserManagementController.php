@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Hash;
 
 class UserManagementController extends Controller
 {
-    // public function __construct(){
+    // public function __construct()
+    // {
     //     $this->middleware('auth');
     // }
     /**
@@ -19,6 +20,7 @@ class UserManagementController extends Controller
     public function index()
     {
         $users = User::all();
+        // dd($users);
         return view('user_management.index', compact('users'));
     }
 

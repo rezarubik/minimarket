@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Minimarket</title>
+  <title>@yield('title')</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" type="image/png" href="{{asset('assets/images/icon/favicon.ico')}}">
   <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
@@ -40,13 +40,16 @@
     <div class="sidebar-menu">
       <div class="sidebar-header">
         <div class="logo">
-          <a href="index.html"><img src="{{asset('assets/images/icon/logo.png')}}" alt="logo"></a>
+          <h4 style="color: #ffffff;">Minimarket</h4>
+          <!-- <a href="index.html"><img src="{{asset('assets/images/icon/logo.png')}}" alt="logo"></a> -->
         </div>
       </div>
       <div class="main-menu">
         <div class="menu-inner">
           <nav>
             <ul class="metismenu" id="menu">
+            <!-- todo Admin -->
+              @if(auth()->user()->role === 'admin')
               <li class="{{(Request::is('/', 'admin/dashboard')) ? 'active' : ''}}">
                 <a aria-expanded="true" href="{{route('admin.dashboard')}}"><i class="ti-dashboard"></i><span>dashboard</span></a>
               </li>
@@ -75,6 +78,39 @@
                   <li><a href="">Penjualan</a></li>
                 </ul>
               </li>
+              <!-- todo Kasir -->
+              @elseif(auth()->user()->role === 'kasir')
+              <li class="{{(Request::is('/', 'admin/dashboard')) ? 'active' : ''}}">
+                <a aria-expanded="true" href="{{route('admin.dashboard')}}"><i class="ti-dashboard"></i><span>dashboard</span></a>
+              </li>
+              <li>
+                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-pie-chart"></i><span>Transaksi</span></a>
+                <ul class="collapse">
+                  <li><a href="">Pembelian</a></li>
+                  <li><a href="">Penjualan</a></li>
+                  <li><a href="">Stok Barang</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-pie-chart"></i><span>Laporan</span></a>
+                <ul class="collapse">
+                  <li><a href="">Pembelian</a></li>
+                  <li><a href="">Penjualan</a></li>
+                </ul>
+              </li>
+              <!-- todo gudang -->
+              @elseif(auth()->user()->role === 'gudang')
+              <li class="{{(Request::is('/', 'admin/dashboard')) ? 'active' : ''}}">
+                <a aria-expanded="true" href="{{route('admin.dashboard')}}"><i class="ti-dashboard"></i><span>dashboard</span></a>
+              </li>
+              <li class="{{(Request::is('/', 'master/*')) ? 'active' : ''}}">
+                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-layout-sidebar-left"></i><span>Master
+                  </span></a>
+                <ul class="collapse">
+                  <li class="{{(Request::is('/', 'master/product')) ? 'active' : ''}}"><a href="{{route('master.product')}}">Barang</a></li>
+                </ul>
+              </li>
+              @endif
             </ul>
           </nav>
         </div>
@@ -266,15 +302,14 @@
                 <a class="dropdown-item" href="#">Message</a>
                 <a class="dropdown-item" href="#">Settings</a>
                 <!-- <a class="dropdown-item" href="#">Log Out</a> -->
-                <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
+                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                  {{ __('Logout') }}
+                </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  @csrf
+                </form>
               </div>
             </div>
           </div>

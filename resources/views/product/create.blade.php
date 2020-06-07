@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+@section('title', 'Minimarket | Tambah Produk')
 @section('headTitle')
 <h4 class="page-title pull-left">Tambah Data Produk</h4>
 <ul class="breadcrumbs pull-left">
