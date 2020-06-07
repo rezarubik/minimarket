@@ -24,15 +24,24 @@
           @csrf
           <div class="form-group">
             <label for="nama_user">Nama User</label>
-            <input name="nama_user" type="text" class="form-control" id="nama_user" placeholder="Masukkan nama user">
+            <input name="nama_user" type="text" class="form-control @error('nama_user') is-invalid @enderror " id="nama_user" placeholder="Masukkan nama user">
+            @error('nama_user')
+            <div class="alert alert-danger mt-2"> {{$message}} </div>
+            @enderror
           </div>
           <div class="form-group">
             <label for="email_user">Email</label>
-            <input name="email_user" type="email" class="form-control" id="email_user" placeholder="Masukkan email user">
+            <input name="email_user" type="email" class="form-control @error('email_user') is-invalid @enderror " id="email_user" placeholder="Masukkan email user">
+            @error('email_user')
+            <div class="alert alert-danger mt-2"> {{$message}} </div>
+            @enderror
           </div>
           <div class="form-group">
             <label for="password">Password</label>
-            <input name="password" type="password" class="form-control" id="email" placeholder="Masukkan email user">
+            <input name="password" type="password" class="form-control @error('password') is-invalid @enderror " id="email" placeholder="Masukkan email user">
+            @error('password')
+            <div class="alert alert-danger mt-2"> {{$message}} </div>
+            @enderror
           </div>
           <div class="form-group">
             <label for="role">Role</label>

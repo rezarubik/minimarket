@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SupplierRequest;
 use App\Supplier;
 use Illuminate\Http\Request;
 
@@ -39,7 +40,7 @@ class SupplierController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SupplierRequest $request)
     {
         $data = [
             'nama' => $request->nama_supplier,
@@ -80,7 +81,7 @@ class SupplierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Supplier $sp)
+    public function update(SupplierRequest $request, Supplier $sp)
     {
         $data = [
             'nama' => $request->nama_supplier,

@@ -19,7 +19,11 @@
           @method('patch')
           <div class="form-group">
             <label for="nama">Nama Customer</label>
-            <input name="nama_customer" type="text" class="form-control" id="nama" value="{{$customer->nama}}">
+            <input name="nama_customer" type="text" class="form-control @error('nama_customer') is-invalid @enderror
+            " id="nama" value="{{$customer->nama}}">
+            @error('nama_customer')
+            <div class="alert alert-danger mt-2"> {{$message}} </div>
+            @enderror
           </div>
           <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Edit</button>
           <a href="{{route('master.customer')}}" class="btn btn-warning mt-4 pr-4 pl-4">Batal</a>

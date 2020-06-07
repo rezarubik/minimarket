@@ -18,15 +18,24 @@
           @csrf
           <div class="form-group">
             <label for="nama">Nama Supplier</label>
-            <input name="nama_supplier" type="text" class="form-control" id="nama" placeholder="Masukkan nama supplier">
+            <input name="nama_supplier" type="text" class="form-control @error('nama_supplier') is-invalid  @enderror" id="nama" placeholder="Masukkan nama supplier" value="{{old('nama_supplier')}}">
+            @error('nama_supplier')
+            <div class="alert alert-danger mt-2"> {{$message}} </div>
+            @enderror
           </div>
           <div class="form-group">
             <label for="alamat">Alamat</label>
-            <input name="alamat_supplier" type="text" class="form-control" id="alamat" placeholder="Masukkan alamat supplier">
+            <input name="alamat_supplier" type="text" class="form-control @error('alamat_supplier') is-invalid @enderror " id="alamat" placeholder="Masukkan alamat supplier" value="{{old('alamat_supplier')}}">
+            @error('alamat_supplier')
+            <div class="alert alert-danger mt-2"> {{$message}} </div>
+            @enderror
           </div>
           <div class="form-group">
             <label for="nomor_telepon">Nomor Telepon</label>
-            <input name="nomor_telepon_supplier" type="number" min="0" class="form-control" id="nomor_telepon" placeholder="Masukkan nomor telepon supplier">
+            <input name="nomor_telepon_supplier" type="text" min="0" class="form-control @error('nomor_telepon_supplier') is-invalid @enderror" id="nomor_telepon" placeholder="Masukkan nomor telepon supplier" value="{{old('nomor_telepon_supplier')}}">
+            @error('nomor_telepon_supplier')
+            <div class="alert alert-danger mt-2"> {{$message}} </div>
+            @enderror
           </div>
           <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Submit</button>
           <a href="{{route('master.supplier')}}" class="btn btn-warning mt-4 pr-4 pl-4">Batal</a>

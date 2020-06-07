@@ -18,7 +18,10 @@
           @csrf
           <div class="form-group">
             <label for="nama">Nama Customer</label>
-            <input name="nama_customer" type="text" class="form-control" id="nama" placeholder="Masukkan nama customer">
+            <input name="nama_customer" type="text" class="form-control @error('nama_customer') is-invalid @enderror" id="nama" placeholder="Masukkan nama customer">
+            @error('nama_customer')
+            <div class="alert alert-danger mt-2"> {{$message}} </div>
+            @enderror
           </div>
           <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Submit</button>
           <a href="{{route('master.customer')}}" class="btn btn-warning mt-4 pr-4 pl-4">Batal</a>
