@@ -25,25 +25,37 @@
           @method('patch')
           <div class="form-group">
             <label for="nama_user">Nama User</label>
-            <input name="nama_user" type="text" class="form-control" id="nama_user" value="{{$user->name}}">
+            <input name="nama_user" type="text" class="form-control @error('nama_user') is-invalid @enderror " id="nama_user" value="{{$user->name}}">
+            @error('nama_user')
+            <p class="text-danger"> {{$message}} </p>
+            @enderror
           </div>
           <div class="form-group">
             <label for="email_user">Email</label>
-            <input name="email_user" type="email" class="form-control" id="email_user" value="{{$user->email}}">
+            <input name="email_user" type="email" class="form-control @error('email_user') is-invalid @enderror " id="email_user" value="{{$user->email}}">
+            @error('email_user')
+            <p class="text-danger"> {{$message}} Data yang diinputkan adalah {{old('email_user')}} </p>
+            @enderror
           </div>
           <div class="form-group">
             <label for="password">Password</label>
-            <input name="password" type="password" class="form-control" id="email" value="{{$user->password}}">
+            <input name="password" type="password" class="form-control @error('password') is-invalid @enderror " id="email" value="{{$user->password}}">
+            @error('password')
+            <p class="text-danger"> {{$message}} </p>
+            @enderror
           </div>
           <div class="form-group">
             <label for="role">Role</label>
             <select name="role" class="custom-select">
-              <option selected>Pilih Role</option>
+              <option value="" selected>Pilih Role</option>
               <option value="admin"> Admin </option>
               <option value="kasir"> Kasir </option>
               <option value="gudang"> Gudang </option>
             </select>
           </div>
+          @error('role')
+          <p class="text-danger"> {{$message}} </p>
+          @enderror
           <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Submit</button>
           <a href="{{route('master.user.management')}}" class="btn btn-warning mt-4 pr-4 pl-4">Batal</a>
         </form>

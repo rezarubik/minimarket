@@ -82,8 +82,20 @@ class UserManagementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserManagementRequest $request, User $user)
+    public function update(Request $request, User $user)
     {
+        $request->validate(
+            [
+                'nama_user' => 'required',
+                'password' => 'required',
+                'role' => 'required'
+            ],
+            [
+                'nama_user.required' => 'Nama User wajib diisi!',
+                'password.required' => 'Password wajib diisi!',
+                'role.required' => 'Role wajib dipilih!',
+            ]
+        );
         $data = [
             'name' => $request->nama_user,
             'email' => $request->email_user,
