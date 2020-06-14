@@ -44,6 +44,18 @@
             @enderror
           </div>
           <div class="form-group">
+            <label for="user_roles" class="col-form-label">Role</label>
+            <select name="id_user_role" class="custom-select @error('id_user_role') is-invalid @enderror ">
+              <option value="" selected>Pilih Role</option>
+              @foreach($userRoles as $role)
+              <option value="{{$role->id_user_role}}"> {{$role->role}} </option>
+              @endforeach
+            </select>
+            @error('id_user_role')
+            <p class="text-danger"> {{$message}} </p>
+            @enderror
+          </div>
+          <!-- <div class="form-group">
             <label for="role">Role</label>
             <select name="role" class="custom-select">
               <option selected>Pilih Role</option>
@@ -51,7 +63,7 @@
               <option value="kasir"> Kasir </option>
               <option value="gudang"> Gudang </option>
             </select>
-          </div>
+          </div> -->
           <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Submit</button>
           <a href="{{route('master.user.management')}}" class="btn btn-warning mt-4 pr-4 pl-4">Batal</a>
         </form>

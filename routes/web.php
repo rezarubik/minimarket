@@ -37,6 +37,14 @@ Route::post('/master/user-management/store', 'UserManagementController@store')->
 Route::get('/master/user-management/{user}/edit', 'UserManagementController@edit')->name('user.management.edit');
 Route::patch('/master/user-management/{user}/edit', 'UserManagementController@update')->name('user.management.update');
 Route::delete('/master/user-management/{user}/delete', 'UserManagementController@destroy')->name('user.management.destroy');
+// todo Master User Role
+Route::get('/master/role', 'RoleController@index')->name('master.role');
+Route::get('/master/role/create', 'RoleController@create')->name('role.create');
+Route::post('/master/role/store', 'RoleController@store')->name('role.store');
+Route::get('/master/role/{user}/edit', 'RoleController@edit')->name('role.edit');
+Route::patch('/master/role/{user}/edit', 'RoleController@update')->name('role.update');
+Route::delete('/master/role/{user}/delete', 'RoleController@destroy')->name('role.destroy');
+
 // todo Master Supplier
 Route::get('/master/supplier', 'SupplierController@index')->name('master.supplier');
 Route::get('/master/supplier/create', 'SupplierController@create')->name('supplier.create');
@@ -62,7 +70,6 @@ Route::patch('/master/product/{product}/edit', 'ProductController@update')->name
 Route::delete('/master/product/{product}/delete', 'ProductController@destroy')->name('product.destroy');
 // todo Export Product
 Route::get('/product/export', 'ProductController@exportToExcel')->name('product.export');
-
 // ? end: Master
 
 // Route::patch('/post/{post}/edit', 'PostController@update')->name('post.update');

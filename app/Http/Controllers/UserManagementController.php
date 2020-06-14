@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserManagementRequest;
 use Illuminate\Http\Request;
 use App\User;
+use App\UserRole;
 use Illuminate\Support\Facades\Hash;
 
 class UserManagementController extends Controller
@@ -32,7 +33,9 @@ class UserManagementController extends Controller
      */
     public function create()
     {
-        return view('user_management.create');
+        $userRoles = UserRole::all();
+        // dd($userRoles);
+        return view('user_management.create', compact('userRoles'));
     }
 
     /**
@@ -44,6 +47,7 @@ class UserManagementController extends Controller
     public function store(UserManagementRequest $request)
     {
         $data = [
+            'id_user_role' => $request->id_user_role,
             'name' => $request->nama_user,
             'email' => $request->email_user,
             'password' => Hash::make($request->password),
@@ -97,6 +101,7 @@ class UserManagementController extends Controller
             ]
         );
         $data = [
+            'id_user_role' => $request->id_user_role,
             'name' => $request->nama_user,
             'email' => $request->email_user,
             'password' => Hash::make($request->password),
@@ -112,8 +117,9 @@ class UserManagementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return redirect()->route('master.user.management')->with('status', 'Data user berhasil dihapus');
     }
 }

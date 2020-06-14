@@ -48,8 +48,7 @@
         <div class="menu-inner">
           <nav>
             <ul class="metismenu" id="menu">
-            <!-- todo Admin -->
-              @if(auth()->user()->role === 'admin')
+              <!-- todo Admin -->
               <li class="{{(Request::is('/', 'admin/dashboard')) ? 'active' : ''}}">
                 <a aria-expanded="true" href="{{route('admin.dashboard')}}"><i class="ti-dashboard"></i><span>dashboard</span></a>
               </li>
@@ -58,6 +57,7 @@
                   </span></a>
                 <ul class="collapse">
                   <li class="{{(Request::is('/', 'master/user-management')) ? 'active' : ''}}"><a href="{{route('master.user.management')}}">User Managemenet</a></li>
+                  <li class="{{(Request::is('/', 'master/role')) ? 'active' : ''}}"><a href="{{route('master.role')}}">Role</a></li>
                   <li class="{{(Request::is('/', 'master/supplier')) ? 'active' : ''}}"><a href="{{route('master.supplier')}}">Supplier</a></li>
                   <li class="{{(Request::is('/', 'master/customer')) ? 'active' : ''}}"><a href="{{route('master.customer')}}">Customer</a></li>
                   <li class="{{(Request::is('/', 'master/product')) ? 'active' : ''}}"><a href="{{route('master.product')}}">Barang</a></li>
@@ -78,39 +78,6 @@
                   <li><a href="">Penjualan</a></li>
                 </ul>
               </li>
-              <!-- todo Kasir -->
-              @elseif(auth()->user()->role === 'kasir')
-              <li class="{{(Request::is('/', 'admin/dashboard')) ? 'active' : ''}}">
-                <a aria-expanded="true" href="{{route('admin.dashboard')}}"><i class="ti-dashboard"></i><span>dashboard</span></a>
-              </li>
-              <li>
-                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-pie-chart"></i><span>Transaksi</span></a>
-                <ul class="collapse">
-                  <li><a href="">Pembelian</a></li>
-                  <li><a href="">Penjualan</a></li>
-                  <li><a href="">Stok Barang</a></li>
-                </ul>
-              </li>
-              <li>
-                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-pie-chart"></i><span>Laporan</span></a>
-                <ul class="collapse">
-                  <li><a href="">Pembelian</a></li>
-                  <li><a href="">Penjualan</a></li>
-                </ul>
-              </li>
-              <!-- todo gudang -->
-              @elseif(auth()->user()->role === 'gudang')
-              <li class="{{(Request::is('/', 'admin/dashboard')) ? 'active' : ''}}">
-                <a aria-expanded="true" href="{{route('admin.dashboard')}}"><i class="ti-dashboard"></i><span>dashboard</span></a>
-              </li>
-              <li class="{{(Request::is('/', 'master/*')) ? 'active' : ''}}">
-                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-layout-sidebar-left"></i><span>Master
-                  </span></a>
-                <ul class="collapse">
-                  <li class="{{(Request::is('/', 'master/product')) ? 'active' : ''}}"><a href="{{route('master.product')}}">Barang</a></li>
-                </ul>
-              </li>
-              @endif
             </ul>
           </nav>
         </div>
