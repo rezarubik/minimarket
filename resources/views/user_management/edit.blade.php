@@ -47,10 +47,9 @@
           <div class="form-group">
             <label for="role">Role</label>
             <select name="role" class="custom-select">
-              <option value="" selected>Pilih Role</option>
-              <option value="admin"> Admin </option>
-              <option value="kasir"> Kasir </option>
-              <option value="gudang"> Gudang </option>
+              @foreach($roles as $role)
+              <option value="{{$role->id_user_role}}" @if($role->id_user_role === $user->id_user_role) selected @endif > {{$role->role}} </option>
+              @endforeach
             </select>
           </div>
           @error('role')

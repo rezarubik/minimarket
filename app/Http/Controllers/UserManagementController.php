@@ -76,7 +76,8 @@ class UserManagementController extends Controller
      */
     public function edit(User $user)
     {
-        return view('user_management.edit', compact('user'));
+        $roles = UserRole::all();
+        return view('user_management.edit', compact('user', 'roles'));
     }
 
     /**

@@ -48,7 +48,8 @@
         <div class="menu-inner">
           <nav>
             <ul class="metismenu" id="menu">
-              <!-- todo Admin -->
+              <!-- todo Admin = 1 -->
+              @if(Auth()->user()->id_user_role == 1)
               <li class="{{(Request::is('/', 'admin/dashboard')) ? 'active' : ''}}">
                 <a aria-expanded="true" href="{{route('admin.dashboard')}}"><i class="ti-dashboard"></i><span>dashboard</span></a>
               </li>
@@ -78,6 +79,49 @@
                   <li><a href="">Penjualan</a></li>
                 </ul>
               </li>
+              <!-- todo Kasir = 2 -->
+              @elseif(Auth()->user()->id_user_role == 2)
+              <li class="{{(Request::is('/', 'admin/dashboard')) ? 'active' : ''}}">
+                <a aria-expanded="true" href="{{route('admin.dashboard')}}"><i class="ti-dashboard"></i><span>dashboard</span></a>
+              </li>
+              <li class="{{(Request::is('/', 'master/*')) ? 'active' : ''}}">
+                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-layout-sidebar-left"></i><span>Master
+                  </span></a>
+                <ul class="collapse">
+                  <li class="{{(Request::is('/', 'master/customer')) ? 'active' : ''}}"><a href="{{route('master.customer')}}">Customer</a></li>
+                  <li class="{{(Request::is('/', 'master/product')) ? 'active' : ''}}"><a href="{{route('master.product')}}">Barang</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-pie-chart"></i><span>Transaksi</span></a>
+                <ul class="collapse">
+                  <li><a href="">Pembelian</a></li>
+                  <li><a href="">Penjualan</a></li>
+                  <li><a href="">Stok Barang</a></li>
+                </ul>
+              </li>
+              <!-- todo Gudang = 3 -->
+              @elseif(Auth()->user()->id_user_role == 3)
+              <li class="{{(Request::is('/', 'admin/dashboard')) ? 'active' : ''}}">
+                <a aria-expanded="true" href="{{route('admin.dashboard')}}"><i class="ti-dashboard"></i><span>dashboard</span></a>
+              </li>
+              <li class="{{(Request::is('/', 'master/*')) ? 'active' : ''}}">
+                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-layout-sidebar-left"></i><span>Master
+                  </span></a>
+                <ul class="collapse">
+                  <li class="{{(Request::is('/', 'master/supplier')) ? 'active' : ''}}"><a href="{{route('master.supplier')}}">Supplier</a></li>
+                  <li class="{{(Request::is('/', 'master/product')) ? 'active' : ''}}"><a href="{{route('master.product')}}">Barang</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-pie-chart"></i><span>Transaksi</span></a>
+                <ul class="collapse">
+                  <li><a href="">Pembelian</a></li>
+                  <li><a href="">Penjualan</a></li>
+                  <li><a href="">Stok Barang</a></li>
+                </ul>
+              </li>
+              @endif
             </ul>
           </nav>
         </div>
