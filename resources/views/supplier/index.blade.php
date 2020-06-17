@@ -34,7 +34,13 @@
   <div class="col-12 mt-2">
     <div class="pull-right">
       <button type="submit" class="btn btn-primary btn-lg mb-3">
-        <a style="color: #ffffff !important;" href="{{route('supplier.create')}}"><i class="fa fa-plus"></i> Tambah</a>
+        <a style="color: #ffffff !important;" href="
+        @if(auth()->user()->id_user_role == 1)
+        {{route('supplier.create')}}
+        @elseif(auth()->user()->id_user_role == 3)
+        {{route('gudang.supplier.create')}}
+        @endif
+        "><i class="fa fa-plus"></i> Tambah</a>
       </button>
     </div>
   </div>
@@ -64,8 +70,20 @@
                 <td> {{$sp->alamat}} </td>
                 <td> {{$sp->nomor_telepon}} </td>
                 <td>
-                  <a href="{{route('supplier.edit', $sp)}}" class="btn btn-xs btn-warning"><i class="ti-pencil"></i> Edit</a>
-                  <form action="{{route('supplier.destroy', $sp)}}" method="post">
+                  <a href="
+                  @if(auth()->user()->id_user_role == 1)
+                  {{route('supplier.edit', $sp)}}
+                  @elseif(auth()->user()->id_user_role == 3)
+                  {{route('gudang.supplier.edit', $sp)}}
+                  @endif
+                  " class="btn btn-xs btn-warning"><i class="ti-pencil"></i> Edit</a>
+                  <form action="
+                  @if(auth()->user()->id_user_role == 1)
+                  {{route('supplier.destroy', $sp)}}
+                  @elseif(auth()->user()->id_user_role == 3)
+                  {{route('gudang.supplier.destroy', $sp)}}
+                  @endif
+                  " method="post">
                     @csrf
                     @method('delete')
                     <button type="submit" class="btn btn-xs btn-danger"><i class="ti-trash"></i> Delete</button>

@@ -14,7 +14,13 @@
     <div class="card">
       <div class="card-body">
         <h4 class="header-title">Tambah Data Supplier</h4>
-        <form action="{{route('supplier.store')}}" method="POST">
+        <form action="
+        @if(auth()->user()->id_user_role == 1)
+        {{route('supplier.store')}}
+        @elseif(auth()->user()->id_user_role == 3)
+        {{route('gudang.supplier.store')}}
+        @endif
+        " method="POST">
           @csrf
           <div class="form-group">
             <label for="nama">Nama Supplier</label>
@@ -38,7 +44,13 @@
             @enderror
           </div>
           <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Submit</button>
-          <a href="{{route('master.supplier')}}" class="btn btn-warning mt-4 pr-4 pl-4">Batal</a>
+          <a href="
+          @if(auth()->user()->id_user_role == 1)
+          {{route('master.supplier')}}
+          @elseif(auth()->user()->id_user_role == 3)
+          {{route('gudang.master.supplier')}}
+          @endif
+          " class="btn btn-warning mt-4 pr-4 pl-4">Batal</a>
         </form>
       </div>
     </div>

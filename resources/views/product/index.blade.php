@@ -34,7 +34,14 @@
   <div class="col-12 mt-2">
     <div class="pull-right">
       <button type="button" class="btn btn-primary btn-lg mb-3">
-        <a style="color: #ffffff !important;" href="{{route('product.create')}}"><i class="fa fa-plus"></i> Tambah</a>
+        <a style="color: #ffffff !important;" href="
+        @if(auth()->user()->id_user_role == 1)
+        {{route('product.create')}}
+        @elseif(auth()->user()->id_user_role == 2)
+        {{route('kasir.product.create')}}
+        @elseif(auth()->user()->id_user_role == 3)
+        {{route('gudang.product.create')}}
+        @endif"><i class="fa fa-plus"></i> Tambah</a>
       </button>
       <button type="button" class="btn btn-success btn-lg mb-3">
         <a style="color: #ffffff !important;" href="{{route('product.export')}}" target="_blank"><i class="fa fa-plus"></i> Export to Excel</a>
@@ -79,8 +86,23 @@
                 <td> {{$product->harga_jual}} </td>
                 <td> {{$product->stok}} </td>
                 <td>
-                  <a href="{{route('product.edit', $product)}}" class="btn btn-xs btn-warning"><i class="ti-pencil"></i> Edit</a>
-                  <form action="{{route('product.destroy', $product)}}" method="post">
+                  <a href="
+                  @if(auth()->user()->id_user_role == 1)
+                  {{route('product.edit', $product)}}
+                  @elseif(auth()->user()->id_user_role == 2)
+                  {{route('kasir.product.edit', $product)}}
+                  @elseif(auth()->user()->id_user_role == 3)
+                  {{route('gudang.product.edit', $product)}}
+                  @endif
+                  " class="btn btn-xs btn-warning"><i class="ti-pencil"></i> Edit</a>
+                  <form action="
+                  @if(auth()->user()->id_user_role == 1)
+                  {{route('product.destroy', $product)}}
+                  @elseif(auth()->user()->id_user_role == 2)
+                  {{route('kasir.product.destroy', $product)}}
+                  @elseif(auth()->user()->id_user_role == 3)
+                  {{route('gudang.product.destroy', $product)}}
+                  @endif" method="post">
                     @csrf
                     @method('delete')
                     <button type="submit" class="btn btn-xs btn-danger"><i class="ti-trash"></i> Delete</button>

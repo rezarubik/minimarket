@@ -14,7 +14,13 @@
     <div class="card">
       <div class="card-body">
         <h4 class="header-title">Edit Data Supplier</h4>
-        <form action="{{route('supplier.update', $sp)}}" method="POST">
+        <form action="
+        @if(auth()->user()->id_user_role == 1)
+        {{route('supplier.update', $sp)}}
+        @elseif(auth()->user()->id_user_role == 3)
+        {{route('gudang.supplier.update', $sp)}}
+        @endif
+        " method="POST">
           @csrf
           @method('patch')
           <div class="form-group">
@@ -39,7 +45,13 @@
             @enderror
           </div>
           <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Edit</button>
-          <a href="{{route('master.supplier')}}" class="btn btn-warning mt-4 pr-4 pl-4">Batal</a>
+          <a href="
+          @if(auth()->user()->id_user_role == 1)
+          {{route('master.supplier')}}
+          @elseif(auth()->user()->id_user_role == 3)
+          {{route('gudang.master.supplier')}}
+          @endif
+          " class="btn btn-warning mt-4 pr-4 pl-4">Batal</a>
         </form>
       </div>
     </div>

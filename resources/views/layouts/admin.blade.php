@@ -84,12 +84,12 @@
               <li class="{{(Request::is('/', 'admin/dashboard')) ? 'active' : ''}}">
                 <a aria-expanded="true" href="{{route('admin.dashboard')}}"><i class="ti-dashboard"></i><span>dashboard</span></a>
               </li>
-              <li class="{{(Request::is('/', 'master/*')) ? 'active' : ''}}">
+              <li class="{{(Request::is('/', 'kasir/*')) ? 'active' : ''}}">
                 <a href="javascript:void(0)" aria-expanded="true"><i class="ti-layout-sidebar-left"></i><span>Master
                   </span></a>
                 <ul class="collapse">
-                  <li class="{{(Request::is('/', 'master/customer')) ? 'active' : ''}}"><a href="{{route('master.customer')}}">Customer</a></li>
-                  <li class="{{(Request::is('/', 'master/product')) ? 'active' : ''}}"><a href="{{route('master.product')}}">Barang</a></li>
+                  <li class="{{(Request::is('/', 'kasir/customer')) ? 'active' : ''}}"><a href="{{route('kasir.master.customer')}}">Customer</a></li>
+                  <li class="{{(Request::is('/', 'kasir/product')) ? 'active' : ''}}"><a href="{{route('kasir.master.product')}}">Barang</a></li>
                 </ul>
               </li>
               <li>
@@ -105,12 +105,12 @@
               <li class="{{(Request::is('/', 'admin/dashboard')) ? 'active' : ''}}">
                 <a aria-expanded="true" href="{{route('admin.dashboard')}}"><i class="ti-dashboard"></i><span>dashboard</span></a>
               </li>
-              <li class="{{(Request::is('/', 'master/*')) ? 'active' : ''}}">
+              <li class="{{(Request::is('/', 'gudang/*')) ? 'active' : ''}}">
                 <a href="javascript:void(0)" aria-expanded="true"><i class="ti-layout-sidebar-left"></i><span>Master
                   </span></a>
                 <ul class="collapse">
-                  <li class="{{(Request::is('/', 'master/supplier')) ? 'active' : ''}}"><a href="{{route('master.supplier')}}">Supplier</a></li>
-                  <li class="{{(Request::is('/', 'master/product')) ? 'active' : ''}}"><a href="{{route('master.product')}}">Barang</a></li>
+                  <li class="{{(Request::is('/', 'gudang/supplier')) ? 'active' : ''}}"><a href="{{route('gudang.master.supplier')}}">Supplier</a></li>
+                  <li class="{{(Request::is('/', 'gudang/product')) ? 'active' : ''}}"><a href="{{route('gudang.master.product')}}">Barang</a></li>
                 </ul>
               </li>
               <li>

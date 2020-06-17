@@ -17,11 +17,11 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        $data = [
-            'email' => Auth::user()->email,
-            'name' => Auth::user()->name,
-            'id_user_role' => Auth::user()->id_user_role
-        ];
+        // $data = [
+        //     'email' => Auth::user()->email,
+        //     'name' => Auth::user()->name,
+        //     'id_user_role' => Auth::user()->id_user_role
+        // ];
         // dd($data);
         // dd(Auth::user()->id_user_role);
         if (Auth::check() && Auth::user()->id_user_role == 1) {

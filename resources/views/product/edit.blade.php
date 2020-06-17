@@ -14,7 +14,15 @@
     <div class="card">
       <div class="card-body">
         <h4 class="header-title">Edit Data Product</h4>
-        <form action="{{route('product.update', $product)}}" method="POST">
+        <form action="
+        @if(auth()->user()->id_user_role == 1)
+        {{route('product.update', $product)}}
+        @elseif(auth()->user()->id_user_role == 2)
+        {{route('kasir.product.update', $product)}}
+        @elseif(auth()->user()->id_user_role == 3)
+        {{route('gudang.product.update', $product)}}
+        @endif
+        " method="POST">
           @csrf
           @method('patch')
           <div class="form-group">
@@ -74,7 +82,15 @@
           <p class="text-danger"> {{$message}} </p>
           @enderror
           <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Edit</button>
-          <a href="{{route('master.product')}}" class="btn btn-warning mt-4 pr-4 pl-4">Batal</a>
+          <a href="
+          @if(auth()->user()->id_user_role == 1)
+          {{route('master.product')}}
+          @elseif(auth()->user()->id_user_role == 2)
+          {{route('kasir.master.product')}}
+          @elseif(auth()->user()->id_user_role == 3)
+          {{route('gudang.master.product')}}
+          @endif
+          " class="btn btn-warning mt-4 pr-4 pl-4">Batal</a>
         </form>
       </div>
     </div>

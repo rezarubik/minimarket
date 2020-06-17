@@ -48,7 +48,11 @@ class SupplierController extends Controller
             'nomor_telepon' => $request->nomor_telepon_supplier
         ];
         Supplier::create($data);
-        return redirect()->route('master.supplier')->with('status', 'Supplier berhasil ditambahkan!');
+        if (auth()->user()->id_user_role == 1) {
+            return redirect()->route('master.supplier')->with('status', 'Data supplier berhasil ditambahkan');
+        } elseif (auth()->user()->id_user_role == 3) {
+            return redirect()->route('gudang.master.supplier')->with('status', 'Data supplier berhasil ditambahkan');
+        }
     }
 
     /**
@@ -85,12 +89,16 @@ class SupplierController extends Controller
     {
         $data = [
             'nama' => $request->nama_supplier,
-            'alamat_supplier' => $request->alamat_supplier,
+            'alamat' => $request->alamat_supplier,
             'nomor_telepon' => $request->nomor_telepon_supplier
         ];
         // dd($data);
         $sp->update($data);
-        return redirect()->route('master.supplier')->with('status', 'Data supplier berhasil diedit');
+        if (auth()->user()->id_user_role == 1) {
+            return redirect()->route('master.supplier')->with('status', 'Data supplier berhasil diedit!');
+        } elseif (auth()->user()->id_user_role == 3) {
+            return redirect()->route('gudang.master.supplier')->with('status', 'Data supplier berhasil diedit!');
+        }
     }
 
     /**
@@ -102,6 +110,10 @@ class SupplierController extends Controller
     public function destroy(Supplier $sp)
     {
         $sp->delete();
-        return redirect()->route('master.supplier')->with('status', 'Data supplier berhasil dihapus');
+        if (auth()->user()->id_user_role == 1) {
+            return redirect()->route('master.supplier')->with('status', 'Data supplier berhasil dihapus!');
+        } elseif (auth()->user()->id_user_role == 3) {
+            return redirect()->route('gudang.master.supplier')->with('status', 'Data supplier berhasil dihapus!');
+        }
     }
 }

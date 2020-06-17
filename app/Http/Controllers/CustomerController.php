@@ -48,7 +48,11 @@ class CustomerController extends Controller
             'nama' => $request->nama_customer
         ];
         Customer::create($data);
-        return redirect()->route('master.customer')->with('status', 'Data customer berhasil ditambahkan');
+        if (auth()->user()->id_user_role == 1) {
+            return redirect()->route('master.customer')->with('status', 'Data customer berhasil ditambahkan');
+        } elseif (auth()->user()->id_user_role == 2) {
+            return redirect()->route('kasir.master.customer')->with('status', 'Data customer berhasil ditambahkan');
+        }
     }
 
     /**
@@ -85,8 +89,13 @@ class CustomerController extends Controller
         $data = [
             'nama' => $request->nama_customer
         ];
+        // dd($data);
         $customer->update($data);
-        return redirect()->route('master.customer')->with('status', 'Data customer berhasil diedit');
+        if (auth()->user()->id_user_role == 1) {
+            return redirect()->route('master.customer')->with('status', 'Data customer berhasil diedit!');
+        } elseif (auth()->user()->id_user_role == 2) {
+            return redirect()->route('kasir.master.customer')->with('status', 'Data customer berhasil diedit!');
+        }
     }
 
     /**
@@ -98,7 +107,11 @@ class CustomerController extends Controller
     public function destroy(Customer $customer)
     {
         $customer->delete();
-        return redirect()->route('master.customer')->with('status', 'Data customer berhasil dihapus');
+        if (auth()->user()->id_user_role == 1) {
+            return redirect()->route('master.customer')->with('status', 'Data customer berhasil dihapus!');
+        } elseif (auth()->user()->id_user_role == 2) {
+            return redirect()->route('kasir.master.customer')->with('status', 'Data customer berhasil dihapus!');
+        }
     }
 
     /**

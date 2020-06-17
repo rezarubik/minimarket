@@ -58,9 +58,14 @@ class ProductController extends Controller
         ];
         // dd($data);
         Product::create($data);
-        return redirect()->route('master.product')->with('status', 'Produk berhasil ditambahakan');
+        if (auth()->user()->id_user_role == 1) {
+            return redirect()->route('master.product')->with('status', 'Data product berhasil ditambahkan');
+        } elseif (auth()->user()->id_user_role == 2) {
+            return redirect()->route('kasir.master.product')->with('status', 'Data product berhasil ditambahkan');
+        } elseif (auth()->user()->id_user_role == 3) {
+            return redirect()->route('gudang.master.product')->with('status', 'Data product berhasil ditambahkan!');
+        }
     }
-
     /**
      * Display the specified resource.
      *
@@ -103,7 +108,13 @@ class ProductController extends Controller
             'stok' => $request->stok
         ];
         $product->update($data);
-        return redirect()->route('master.product')->with('status', 'Barang berhasil diedit');
+        if (auth()->user()->id_user_role == 1) {
+            return redirect()->route('master.product')->with('status', 'Data product berhasil diedit!');
+        } elseif (auth()->user()->id_user_role == 2) {
+            return redirect()->route('kasir.master.product')->with('status', 'Data product berhasil diedit!');
+        } elseif (auth()->user()->id_user_role == 3) {
+            return redirect()->route('gudang.master.product')->with('status', 'Data product berhasil diedit!');
+        }
     }
 
     /**
@@ -115,7 +126,13 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-        return redirect()->route('master.product')->with('status', 'Data barang berhasil dihapus');
+        if (auth()->user()->id_user_role == 1) {
+            return redirect()->route('master.product')->with('status', 'Data product berhasil dihapus!');
+        } elseif (auth()->user()->id_user_role == 2) {
+            return redirect()->route('kasir.master.product')->with('status', 'Data product berhasil dihapus!');
+        } elseif (auth()->user()->id_user_role == 3) {
+            return redirect()->route('gudang.master.product')->with('status', 'Data product berhasil dihapus!');
+        }
     }
 
     /**

@@ -34,8 +34,15 @@
   <div class="col-12 mt-2">
     <div class="pull-right">
       <button type="button" class="btn btn-primary btn-lg mb-3">
-        <a style="color: #ffffff !important;" href="{{route('customer.create')}}"><i class="fa fa-plus"></i> Tambah</a>
+        <a style="color: #ffffff !important;" href="
+        @if(auth()->user()->id_user_role == 1)
+        {{route('customer.create')}}
+        @elseif(auth()->user()->id_user_role == 2)
+        {{route('kasir.customer.create')}}
+        @endif
+        "><i class="fa fa-plus"></i> Tambah</a>
       </button>
+      <!-- route('customer.create') -->
       <button type="button" class="btn btn-success btn-lg mb-3">
         <a style="color: #ffffff !important;" href="{{route('customer.export')}}" target="_blank"><i class="fa fa-plus"></i> Export to Excel</a>
       </button>
@@ -63,8 +70,20 @@
                 <td> {{$customer->id_customer}} </td>
                 <td> {{$customer->nama}} </td>
                 <td>
-                  <a href="{{route('customer.edit', $customer)}}" class="btn btn-xs btn-warning"><i class="ti-pencil"></i> Edit</a>
-                  <form action="{{route('customer.destroy', $customer)}}" method="post">
+                  <a href="
+                  @if(auth()->user()->id_user_role == 1)
+                  {{route('customer.edit', $customer)}}
+                  @elseif(auth()->user()->id_user_role == 2)
+                  {{route('kasir.customer.edit', $customer)}}
+                  @endif
+                  " class="btn btn-xs btn-warning"><i class="ti-pencil"></i> Edit</a>
+                  <form action="
+                  @if(auth()->user()->id_user_role == 1)
+                  {{route('customer.destroy', $customer)}}
+                  @elseif(auth()->user()->id_user_role == 2)
+                  {{route('kasir.customer.destroy', $customer)}}
+                  @endif
+                  " method="post">
                     @csrf
                     @method('delete')
                     <button type="submit" class="btn btn-xs btn-danger"><i class="ti-trash"></i> Delete</button>

@@ -14,7 +14,13 @@
     <div class="card">
       <div class="card-body">
         <h4 class="header-title">Edit Data Customer</h4>
-        <form action="{{route('customer.update', $customer)}}" method="POST">
+        <form action="
+        @if(auth()->user()->id_user_role == 1)
+        {{route('customer.update', $customer)}}
+        @elseif(auth()->user()->id_user_role == 2)
+        {{route('kasir.customer.update', $customer)}}
+        @endif
+        " method="POST">
           @csrf
           @method('patch')
           <div class="form-group">
@@ -26,7 +32,13 @@
             @enderror
           </div>
           <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Edit</button>
-          <a href="{{route('master.customer')}}" class="btn btn-warning mt-4 pr-4 pl-4">Batal</a>
+          <a href="
+          @if(auth()->user()->id_user_role == 1)
+          {{route('master.customer')}}
+          @elseif(auth()->user()->id_user_role == 2)
+          {{route('kasir.master.customer')}}
+          @endif
+          " class="btn btn-warning mt-4 pr-4 pl-4">Batal</a>
         </form>
       </div>
     </div>
